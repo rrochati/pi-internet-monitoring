@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 1m      # Global default scrape interval (for itself, etc.)
+  evaluation_interval: 1m
+
+scrape_configs:
+  # Scrape Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Scrape the M-Lab NDT7 Exporter
+  - job_name: 'ndt7-exporter'
+    # Important: NDT tests are very network-intensive (they saturate your connection).
+    # We scrape every 60 minutes so we don't accidentally run speed tests constantly.
+    scrape_interval: 60m
+    scrape_timeout: 60s    # NDT test might take a while to complete and return metrics
+    static_configs:
+      - targets: ['ndt7-exporter:8080']
