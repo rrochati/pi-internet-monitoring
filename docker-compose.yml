@@ -7,8 +7,12 @@ services:
     restart: unless-stopped
     ports:
       - "8080:8080"
-    # Optional: You can pass flags to the ndt7-client if needed
-    # command: ["-format=json"]
+    # Run a fixed probe every 30 minutes.
+    command:
+      - --port=8080
+      - --period_mean=30m
+      - --period_min=30m
+      - --period_max=30m
 
   # Prometheus Time-Series Database
   prometheus:
