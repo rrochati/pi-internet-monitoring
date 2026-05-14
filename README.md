@@ -32,3 +32,11 @@ This project sets up an open-source internet quality monitoring stack on a Raspb
 
 *   **Test Frequency:** To change how often the speed test runs, edit the `scrape_interval` in `prometheus/prometheus.yml`. By default, it runs every 60 minutes. Running it too frequently may impact your network performance and use significant bandwidth.
 *   **Dashboards:** You will need to create or import a dashboard in Grafana and connect it to the Prometheus data source.
+
+## Notes
+
+*   The exporter build is pinned to `m-lab/ndt7-client-go` tag `v0.9.1` in `docker-compose.yml` for stability. The upstream `main` branch currently has a `go.mod` version string that breaks the Docker build.
+*   If you change the exporter build source, run a rebuild:
+    ```bash
+    docker compose up -d --build
+    ```

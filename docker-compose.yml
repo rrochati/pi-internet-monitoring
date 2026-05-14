@@ -1,10 +1,8 @@
-version: '3.8'
-
 services:
   # M-Lab NDT7 Prometheus Exporter
-  # Builds directly from the official M-Lab GitHub repository.
+  # Build from a stable tag (main is currently broken for Go 1.20-based Dockerfile).
   ndt7-exporter:
-    build: https://github.com/m-lab/ndt7-client-go.git#main
+    build: https://github.com/m-lab/ndt7-client-go.git#v0.9.1
     container_name: ndt7-exporter
     restart: unless-stopped
     ports:
