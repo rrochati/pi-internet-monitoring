@@ -40,3 +40,20 @@ This project sets up an open-source internet quality monitoring stack on a Raspb
     ```bash
     docker compose up -d --build
     ```
+
+## Grafana Dashboard
+
+This repo includes auto-provisioned Grafana configuration:
+
+*   Data source: `Prometheus` (`http://prometheus:9090`)
+*   Dashboard: `NDT7 Internet Quality Overview` (folder `NDT7`)
+
+After starting or updating the stack, open Grafana and go to:
+
+*   `Dashboards` -> `NDT7` -> `NDT7 Internet Quality Overview`
+
+If you added these files to an existing running deployment, recreate Grafana:
+
+```bash
+docker compose up -d --force-recreate grafana
+```
